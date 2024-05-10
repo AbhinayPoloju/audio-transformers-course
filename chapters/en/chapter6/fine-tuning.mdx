@@ -263,7 +263,7 @@ containing the corresponding speaker embedding.
 ```py
 import os
 import torch
-from speechbrain.pretrained import EncoderClassifier
+from speechbrain.inference import EncoderClassifier
 
 spk_model_name = "speechbrain/spkrec-xvect-voxceleb"
 
@@ -460,7 +460,7 @@ Load the pre-trained model from the same checkpoint as you used for loading the 
 ```py
 from transformers import SpeechT5ForTextToSpeech
 
-model = SpeechT5ForTextToSpeech.from_pretrained(checkpoint)
+model = SpeechT5ForTextToSpeech.from_(checkpoint)
 ```
 
 The `use_cache=True` option is incompatible with gradient checkpointing. Disable it for training, and re-enable cache for 
@@ -539,7 +539,7 @@ Once you have fine-tuned a model, you can use it for inference! Load the model f
 account name in the following code snippet): 
 
 ```py
-model = SpeechT5ForTextToSpeech.from_pretrained(
+model = SpeechT5ForTextToSpeech.from_(
     "YOUR_ACCOUNT/speecht5_finetuned_voxpopuli_nl"
 )
 ```
@@ -568,7 +568,7 @@ Instantiate a vocoder and generate speech:
 ```py
 from transformers import SpeechT5HifiGan
 
-vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
+vocoder = SpeechT5HifiGan.from_("microsoft/speecht5_hifigan")
 speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
 ```
 
